@@ -22,7 +22,7 @@ int main()
 			<< "-> Sapin = 1 " << std::endl
 			<< "-> Plus Ou Moins = 2 " << std::endl
 			<< "-> Table de multiplication = 3 " << std::endl
-			<< "-> Exit = " << number_Game<< std::endl;
+			<< "-> Exit = " << number_Game << std::endl;
 		int choice = Choice(1, number_Game);
 
 
@@ -194,18 +194,99 @@ void PrintMultiplication()
 
 void Morpion()
 {
-	char table[9]{ ' ' };
-	int a = 2;
-	for (int i = 0; i <= 9; i++)
+	const int max_Table = 8;
+	char table[max_Table]{'x'};
+	int choice;
+	while (true)
 	{
-		std::cout << table;
-		if (i != a && i!=9)
-			std::cout << " | ";
-		if (i == a)
+		int a = 2;
+		for (int i = 0; i <= 9; i++)
 		{
-			std::cout << std::endl;
-			a=a + 3;
+			std::cout << table;
+			if (i != a && i != 9)
+				std::cout << " | ";
+			if (i == a)
+			{
+				std::cout << std::endl;
+				a = a + 3;
+			}
+
 		}
 
+		while (true) // joueur qui joue
+		{
+			choice = Choice(0, 8);
+			if (table[choice] != ' ')
+			{
+				table[choice] = 'x';
+				break;
+			}
+			std::cout << "la place et deja occuper" << std::endl;
+		}
+		for (int i = 0; i == 6; i = i + 3)
+		{
+			if (table[i] == 'x' && table[i + 1] == 'x' && table[i + 2] == 'x')
+			{
+				std::cout << "Bien jouer Gagner !" << std::endl;
+				break;
+			}
+		}
+		for (int i = 0; i == 3; i++)
+		{
+			if (table[i] == 'x' && table[i + 3] == 'x' && table[i + 6] == 'x')
+			{
+				std::cout << "Bien jouer Gagner !" << std::endl;
+				break;
+			}
+		}
+		if ((table[0] == 'x' && table[4] == 'x' && table[8] == 'x') || (table[6] == 'x' && table[4] == 'x' && table[2] == 'x'))
+		{
+			std::cout << "Bien jouer Gagner !" << std::endl;
+			break;
+		}
+		while (true) // bot stupide (randome
+		{
+			choice = Generator(max_Table);
+			if (table[choice] == ' ')
+			{
+				table[choice] = 'o';
+				break;
+			}
+			
+		}
+		for (int i = 0; i == 8; i++)
+		{
+			if (table[i] == ' ' && table[i + 1] == ' ' && table[i + 2] == ' ')
+			{
+				std::cout << " Egaliter " << std::endl;
+				break;
+			}
+		}
+
+		for (int i = 0; i == 6; i = i + 3)
+		{
+			if (table[i] == 'o' && table[i + 1] == 'o' && table[i + 2] == 'o')
+			{
+				std::cout << "Bien jouer Gagner !" << std::endl;
+				break;
+			}
+
+		}
+		for (int i = 0; i == 3; i++)
+		{
+			if (table[i] == 'o' && table[i+3] == 'o' && table[i + 6] == 'o')
+			{
+				std::cout << "Bien jouer Gagner !" << std::endl;
+				break;
+			}
+		}
+		if ((table[0] == 'o' && table[4] == 'o' && table[8] == 'o') || (table[6] == 'o' && table[4] == 'o' && table[2] == 'o'))
+		{
+			std::cout << "Bien jouer Gagner !" << std::endl;
+			break;
+		}
+
+
 	}
+
 }
