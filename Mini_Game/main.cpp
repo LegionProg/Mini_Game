@@ -9,10 +9,12 @@ void PlusOuMoins();
 void Multiplication();
 void PrintMultiplication();
 
+void Morpion();
+
 int main()
 {
 	srand(time(NULL));
-	int number_Game = 3; // nombre de jeux + 1 pour exit
+	int number_Game = 4; // nombre de jeux + 1 pour exit
 
 	while (true)
 	{
@@ -20,12 +22,12 @@ int main()
 			<< "-> Sapin = 1 " << std::endl
 			<< "-> Plus Ou Moins = 2 " << std::endl
 			<< "-> Table de multiplication = 3 " << std::endl
-			<< "-> Exit = " << number_Game + 1 << std::endl;
+			<< "-> Exit = " << number_Game<< std::endl;
 		int choice = Choice(1, number_Game);
 
 
 		if (choice == 1)
-			FirPlay();
+			Morpion();//FirPlay();
 		else if (choice == 2)
 			PlusOuMoins();
 		else if (choice == 3)
@@ -187,5 +189,23 @@ void PrintMultiplication()
 	for (int i = 0; i <= 10; i++)
 	{
 		std::cout << "-> " << table[i] << std::endl;
+	}
+}
+
+void Morpion()
+{
+	char table[9]{ ' ' };
+	int a = 2;
+	for (int i = 0; i <= 9; i++)
+	{
+		std::cout << table;
+		if (i != a && i!=9)
+			std::cout << " | ";
+		if (i == a)
+		{
+			std::cout << std::endl;
+			a=a + 3;
+		}
+
 	}
 }
