@@ -15,12 +15,14 @@ int main()
 
 	while (true)
 	{
-		std::cout << "Choisiser le jeux\n 1 = Sapin\n 2 = EXIT" << std::endl;
-		int choice = Choice(0, number_Game);
+		std::cout << "Choisiser le jeux\n Sapin = 1\n Plus Ou Moins = 2 \n Exit = 3" << std::endl;
+		int choice = Choice(1, number_Game);
 
 
 		if (choice == 1)
 			FirPlay();
+		else if (choice == 2)
+			PlusOuMoins();
 		else
 			break;
 	}
@@ -31,7 +33,15 @@ int main()
 int Choice(int min, int max)
 {
 	int choice;
-	std::cin >> choice;
+	while (true)
+	{
+		std::cin >> choice;
+		if (choice >= min && choice <= max)
+			break;
+		std::cout << "Vous avez mal saisie recomancer et cette fois si correctement !!!"<< std::endl;
+	}
+	
+	
 	return choice;
 }
 int Generator(int max)
@@ -54,7 +64,7 @@ void FirPlay()
 		const unsigned logMinSize = 2;
 		const unsigned logMaxSize = 12;
 		// déplacer ce qui est au dessut dans un .h
-	
+
 
 
 		// déplacer dans une fonction ce qui à au dessut
@@ -63,7 +73,7 @@ void FirPlay()
 
 		std::cout << "Please enter the log size in range [" << logMinSize << "," << logMaxSize << "] : ";
 		logSize = Choice(logMinSize, logMaxSize);;
-	
+
 		std::cout << std::endl;
 
 		int space = 8 * firSize; // de base 4 = 8
@@ -95,3 +105,59 @@ void FirPlay()
 	}
 }
 
+void PlusOuMoins()
+{
+	int max;
+	int number;
+	int turn;
+	std::cout << "Quelle difficulter voulez vous jouez ? " << std::endl << "Facile = 1 " << std::endl << "Normale = 2" << std::endl << "Dificile = 3" << std::endl;
+	max = Choice(1, 3);
+	if (max == 1)
+	{
+		std::cout << "Tu a choisis Facile petit joueur !! :(" << std::endl;
+		max = 50;
+		turn = 10;
+	}
+	else if (max== 2)
+	{
+		std::cout << "Tu a choisis Normale Sa manque de personaliter tous sa :/" << std::endl;
+		max = 100;
+		turn = 6;
+	}
+	
+	else if (max== 3)
+	{
+		std::cout << "Tu a choisis Difficile t'est sur que tu à le niveau ? XD" << std::endl;
+		max = 200;
+		turn = 10;
+	}
+	
+	int mystery_Number = Generator(max);
+
+	while (true)
+	{
+		turn--;
+		std::cout << "choisit un nombre entre 0 et" << max << std::endl;
+		number = Choice(0, max);
+		
+		if (number == mystery_Number)
+		{
+			std::cout << "Bien jouer tu a gagner" << std::endl;
+			break;
+		}
+		else if (turn == 0)
+		{
+			std::cout << "Perdut " << std::endl;
+			break;
+		}
+		else if (number > mystery_Number)
+		{
+			std::cout << "T'est trop haut" << std::endl;
+		}
+		else if (number < mystery_Number)
+		{
+			std::cout << "Trop bas" << std::endl;
+		}
+		turn--;
+	}
+}
