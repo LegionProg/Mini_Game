@@ -1,5 +1,5 @@
 #include "Fire.h"
-
+/*
 int PrintFire(int fireSize)
 {
 	std::cout << "     ";
@@ -16,4 +16,4 @@ int PrintFire(int fireSize)
 		std::cout << std::endl;
 		space = space - 1;
 	}
-}
+}*/
