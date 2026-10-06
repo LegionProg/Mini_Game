@@ -27,11 +27,15 @@ int main()
 
 
 		if (choice == 1)
-			Morpion();//FirPlay();
+			FirPlay();
 		else if (choice == 2)
 			PlusOuMoins();
 		else if (choice == 3)
 			PrintMultiplication();
+		else if (choice == 4)
+			Morpion();
+
+
 		else
 			break;
 	}
