@@ -6,16 +6,21 @@ int Generator(int max);
 
 void FirPlay();
 void PlusOuMoins();
-
+void Multiplication();
+void PrintMultiplication();
 
 int main()
 {
 	srand(time(NULL));
-	int number_Game = 2; // nombre de jeux + 1 pour exit
+	int number_Game = 3; // nombre de jeux + 1 pour exit
 
 	while (true)
 	{
-		std::cout << "Choisiser le jeux\n Sapin = 1\n Plus Ou Moins = 2 \n Exit = 3" << std::endl;
+		std::cout << "Choisiser le jeux" << std::endl
+			<< "-> Sapin = 1 " << std::endl
+			<< "-> Plus Ou Moins = 2 " << std::endl
+			<< "-> Table de multiplication = 3 " << std::endl
+			<< "-> Exit = " << number_Game + 1 << std::endl;
 		int choice = Choice(1, number_Game);
 
 
@@ -23,6 +28,8 @@ int main()
 			FirPlay();
 		else if (choice == 2)
 			PlusOuMoins();
+		else if (choice == 3)
+			PrintMultiplication();
 		else
 			break;
 	}
@@ -38,10 +45,10 @@ int Choice(int min, int max)
 		std::cin >> choice;
 		if (choice >= min && choice <= max)
 			break;
-		std::cout << "Vous avez mal saisie recomancer et cette fois si correctement !!!"<< std::endl;
+		std::cout << "Vous avez mal saisie recomancer et cette fois si correctement !!!" << std::endl;
 	}
-	
-	
+
+
 	return choice;
 }
 int Generator(int max)
@@ -118,20 +125,20 @@ void PlusOuMoins()
 		max = 50;
 		turn = 10;
 	}
-	else if (max== 2)
+	else if (max == 2)
 	{
 		std::cout << "Tu a choisis Normale Sa manque de personaliter tous sa :/" << std::endl;
 		max = 100;
 		turn = 6;
 	}
-	
-	else if (max== 3)
+
+	else if (max == 3)
 	{
 		std::cout << "Tu a choisis Difficile t'est sur que tu à le niveau ? XD" << std::endl;
 		max = 200;
 		turn = 10;
 	}
-	
+
 	int mystery_Number = Generator(max);
 
 	while (true)
@@ -139,7 +146,7 @@ void PlusOuMoins()
 		turn--;
 		std::cout << "choisit un nombre entre 0 et" << max << std::endl;
 		number = Choice(0, max);
-		
+
 		if (number == mystery_Number)
 		{
 			std::cout << "Bien jouer tu a gagner" << std::endl;
@@ -159,5 +166,26 @@ void PlusOuMoins()
 			std::cout << "Trop bas" << std::endl;
 		}
 		turn--;
+	}
+}
+
+void Multiplication(int number, int table[11])
+{
+	for (int i = 0; i <= 10; i++)
+	{
+		table[i] = i * number;
+	}
+}
+
+void PrintMultiplication()
+{
+	std::cout << "Entrer un nombre de 0 a 10" << std::endl;
+	int number = Choice(0, 9);
+	int table[11]{ 0 };
+	Multiplication(number, table);
+	std::cout << "Voici la table de " << number << std::endl;
+	for (int i = 0; i <= 10; i++)
+	{
+		std::cout << "-> " << table[i] << std::endl;
 	}
 }
