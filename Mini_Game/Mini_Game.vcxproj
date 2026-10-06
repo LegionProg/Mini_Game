@@ -20,10 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Sapin.cpp" />
+    <ClCompile Include="Fire.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sapin.h" />
+    <ClInclude Include="Fire.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
