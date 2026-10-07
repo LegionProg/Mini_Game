@@ -19,12 +19,12 @@ void Morpion();
 int main()
 {
 	srand(time(NULL));
-	int number_Game = 4; // nombre de jeux + 1 pour exit
+	int number_Game = 6; // nombre de jeux + 1 pour exit
 
 	while (true)
 	{
 		std::cout << "Choisiser le jeux" << std::endl
-			<< "-> Sapin = 1 " << std::endl
+			<< "-> Sapin = 1 " << std::endl // maintenir le sapin existant
 			<< "-> Plus Ou Moins = 2 " << std::endl
 			<< "-> Table de multiplication = 3 " << std::endl
 			<< "-> Pierre Papier Ciseau = 4 " << std::endl
@@ -40,11 +40,12 @@ int main()
 			PrintMultiplication();
 		else if (choice == 4)
 			PFC();
-		else if (choice == 99)
+		else if (choice == 5)
 			Morpion();
 
 		else
 			break;
+		system("cls");
 	}
 
 	return 0;
@@ -72,6 +73,7 @@ int Generator(int max)
 
 void FirPlay()
 {
+	while (true)
 	{
 		// déplacer dans le .h
 		unsigned firSize = 0;
@@ -83,6 +85,8 @@ void FirPlay()
 		const char logCustomization = '|';
 		const unsigned logMinSize = 2;
 		const unsigned logMaxSize = 12;
+
+		int quit;
 		// déplacer ce qui est au dessut dans un .h
 
 
@@ -122,6 +126,11 @@ void FirPlay()
 			std::cout << logCustomization << logCustomization;
 			std::cout << std::endl;
 		}
+
+		quit = Choice(0, 1);
+		if (quit == 1)
+			break;
+		system("cls");
 	}
 }
 
@@ -206,14 +215,14 @@ void PrintMultiplication()
 void Morpion()
 {
 	const int max_Table = 9;
-	char table[max_Table]{ '#' };
+	char table[max_Table]{ ' ', ' ',' ',' ', ' ',' ', ' ', ' ',' ' };
 	int choice;
 	while (true)
 	{
 		int a = 2;
 		for (int i = 0; i <= 8; i++)
 		{
-			std::cout << table;
+			std::cout << table[i];
 			if (i != a && i != 9)
 				std::cout << " | ";
 			if (i == a)
@@ -227,7 +236,7 @@ void Morpion()
 		while (true) // joueur qui joue
 		{
 			choice = Choice(0, 8);
-			if (table[choice] != ' ')
+			if (table[choice] == ' ')
 			{
 				table[choice] = 'x';
 				break;
@@ -237,7 +246,7 @@ void Morpion()
 
 
 		// condition de victoire joueur
-		for (int i = 0; i == 6; i = i + 3)
+		for (int i = 0; i <= 6; i = i + 3)
 		{
 			if (table[i] == 'x' && table[i + 1] == 'x' && table[i + 2] == 'x')
 			{
@@ -245,7 +254,7 @@ void Morpion()
 				break;
 			}
 		}
-		for (int i = 0; i == 3; i++)
+		for (int i = 0; i <= 3; i++)
 		{
 			if (table[i] == 'x' && table[i + 3] == 'x' && table[i + 6] == 'x')
 			{
@@ -296,7 +305,7 @@ void Morpion()
 		}
 		if ((table[0] == 'o' && table[4] == 'o' && table[8] == 'o') || (table[6] == 'o' && table[4] == 'o' && table[2] == 'o'))
 		{
-			std::cout << "Bien jouer Gagner !" << std::endl;
+			std::cout << "Perdu !" << std::endl;
 			break;
 		}
 	}
