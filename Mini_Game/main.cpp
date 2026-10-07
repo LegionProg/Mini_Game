@@ -9,6 +9,11 @@ void PlusOuMoins();
 void Multiplication();
 void PrintMultiplication();
 
+int PFC_IA(int randomIA, int tableIA[3]);
+int PFC_PrintResult(int choice, int botChoice, int score[3], int numberOfManche);
+void PFC_Print_Choice(int choice);
+void PFC();
+
 void Morpion();
 
 int main()
@@ -22,6 +27,7 @@ int main()
 			<< "-> Sapin = 1 " << std::endl
 			<< "-> Plus Ou Moins = 2 " << std::endl
 			<< "-> Table de multiplication = 3 " << std::endl
+			<< "-> Pierre Papier Ciseau = 4 " << std::endl
 			<< "-> Exit = " << number_Game << std::endl;
 		int choice = Choice(1, number_Game);
 
@@ -33,8 +39,9 @@ int main()
 		else if (choice == 3)
 			PrintMultiplication();
 		else if (choice == 4)
+			PFC();
+		else if (choice == 99)
 			Morpion();
-
 
 		else
 			break;
@@ -122,7 +129,7 @@ void PlusOuMoins()
 {
 	int max;
 	int number;
-	int turn;
+	int turn = 10;
 	std::cout << "Quelle difficulter voulez vous jouez ? " << std::endl << "Facile = 1 " << std::endl << "Normale = 2" << std::endl << "Dificile = 3" << std::endl;
 	max = Choice(1, 3);
 	if (max == 1)
@@ -199,7 +206,7 @@ void PrintMultiplication()
 void Morpion()
 {
 	const int max_Table = 9;
-	char table[max_Table]{'#'};
+	char table[max_Table]{ '#' };
 	int choice;
 	while (true)
 	{
@@ -259,7 +266,7 @@ void Morpion()
 				table[choice] = 'o';
 				break;
 			}
-			
+
 		}
 		for (int i = 0; i == 8; i++)
 		{
@@ -281,7 +288,7 @@ void Morpion()
 		}
 		for (int i = 0; i == 3; i++)
 		{
-			if (table[i] == 'o' && table[i+3] == 'o' && table[i + 6] == 'o')
+			if (table[i] == 'o' && table[i + 3] == 'o' && table[i + 6] == 'o')
 			{
 				std::cout << "Bien jouer Gagner !" << std::endl;
 				break;
@@ -292,8 +299,143 @@ void Morpion()
 			std::cout << "Bien jouer Gagner !" << std::endl;
 			break;
 		}
+	}
+}
 
 
+
+
+
+
+void PFC()
+{
+	{
+		int choice;
+		int botChoice;
+		int result = 1;
+		int numberOfManche; // verifier l'hortographe
+		std::cout << ">Bienvenu dans le jeux du pierre feuille ciseau" << std::endl;
+
+		int score[3]{ 0 };
+		int tableIA[3]{ 0 };
+		int randomIA;
+
+		std::cout << "Choisissez le nombre de manche -> ";
+		numberOfManche = Choice(1, 10);
+		while (true)
+		{
+			randomIA = Generator(100);
+			botChoice = PFC_IA(randomIA, tableIA);
+			std::cout << "Choisissez " << std::endl
+				<< "Pierre = 0" << std::endl
+				<< "Feuille = 1" << std::endl
+				<< "Ciseau = 2" << std::endl;
+
+			choice = Choice(0, 2);
+			std::cout << "Humain joue -> ";
+			PFC_Print_Choice(choice);
+
+			tableIA[choice] = tableIA[choice] + 1;
+
+			std::cout << "Machine joue -> ";
+			PFC_Print_Choice(botChoice);
+
+
+			result = PFC_PrintResult(choice, botChoice, score, numberOfManche);
+			if (result == 0)
+			{
+				break;
+			}
+		}
+
+	}
+}
+
+int PFC_IA(int randomIA, int tableIA[3])
+{
+	int botChoice;
+	if (randomIA <= 70)
+	{
+		//cout << endl << "IA" << endl;
+		if (tableIA[0] > tableIA[1] && tableIA[0] > tableIA[2])
+			botChoice = 1;
+		else if (tableIA[1] > tableIA[2])
+			botChoice = 2;
+		else
+			botChoice = 0;
+	}
+	else
+	{
+		botChoice = Generator(3);
+		//cout << endl << "RN" << endl;
+	}
+	return botChoice;
+}
+void PFC_Print_Choice(int choice)
+{
+
+	if (choice == 0)
+	{
+		std::cout << "Pierre" << std::endl;
+	}
+	else if (choice == 1)
+	{
+		std::cout << "Feuille" << std::endl;
+	}
+	else if (choice == 2)
+	{
+		std::cout << "Ciseau" << std::endl;
 	}
 
 }
+int PFC_PrintResult(int choice, int botChoice, int score[3], int numberOfManche)
+{
+	// Proto ->
+	if (choice == botChoice)
+	{
+		std::cout << std::endl << "egaliter" << std::endl;
+		score[2] = score[2] + 1;
+	}
+	else if (choice == 0) // caillou
+	{
+		if (botChoice == 1) // feuille
+		{
+			std::cout << std::endl << "perdu " << std::endl;
+			score[1] = score[1] + 1;
+		}
+		else
+		{
+			std::cout << std::endl << "Victoir " << std::endl;
+			score[0] = score[0] + 1;
+
+		}
+	}
+	else if (choice - 1 == botChoice)
+	{
+		std::cout << std::endl << "Victoire " << std::endl;
+		score[0] = score[0] + 1;
+	}
+	else if (choice == botChoice + 1)
+	{
+		std::cout << std::endl << "perdu " << std::endl;
+		score[1] = score[1] + 1;
+	}
+
+	/// <- Proto
+
+	std::cout << std::endl << "Voici les score Humain -> " << score[0]
+		<< " | score Machine -> " << score[1]
+		<< " | manche nul -> " << score[2] << std::endl;
+
+	if (score[0] == numberOfManche)
+	{
+		std::cout << "tu a gagner cette fois si " << std::endl;
+		return 0;
+	}
+	else if (score[1] == numberOfManche)
+	{
+		std::cout << "tu a perdu " << std::endl;
+		return 0;
+	}
+}
+
