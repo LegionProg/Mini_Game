@@ -198,13 +198,13 @@ void PrintMultiplication()
 
 void Morpion()
 {
-	const int max_Table = 8;
-	char table[max_Table]{'x'};
+	const int max_Table = 9;
+	char table[max_Table]{'#'};
 	int choice;
 	while (true)
 	{
 		int a = 2;
-		for (int i = 0; i <= 9; i++)
+		for (int i = 0; i <= 8; i++)
 		{
 			std::cout << table;
 			if (i != a && i != 9)
@@ -227,6 +227,9 @@ void Morpion()
 			}
 			std::cout << "la place et deja occuper" << std::endl;
 		}
+
+
+		// condition de victoire joueur
 		for (int i = 0; i == 6; i = i + 3)
 		{
 			if (table[i] == 'x' && table[i + 1] == 'x' && table[i + 2] == 'x')
