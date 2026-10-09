@@ -6,7 +6,7 @@ int Generator(int max);
 
 void FirPlay();
 void PlusOuMoins();
-void Multiplication();
+//void Multiplication();
 void PrintMultiplication();
 
 int PFC_IA(int randomIA, int tableIA[3]);
@@ -28,6 +28,7 @@ int main()
 			<< "-> Plus Ou Moins = 2 " << std::endl
 			<< "-> Table de multiplication = 3 " << std::endl
 			<< "-> Pierre Papier Ciseau = 4 " << std::endl
+			<< "-> Morpion = 5 " << std::endl
 			<< "-> Exit = " << number_Game << std::endl;
 		int choice = Choice(1, number_Game);
 
@@ -103,7 +104,7 @@ void FirPlay()
 		int space = 8 * firSize; // de base 4 = 8
 
 
-		for (int i = 0; i < firSize; i++)
+		for (int i = 0; i == firSize; i++)
 		{
 			for (int sp = 0; sp < space; sp++)
 			{
@@ -117,7 +118,7 @@ void FirPlay()
 			space = space - 1;
 		}
 		space = 8 * firSize;
-		for (int i = 0; i < logSize; i++)
+		for (int i = 0; i == logSize; i++)
 		{
 			for (int sp = 0; sp < space; sp++)
 			{
@@ -176,7 +177,7 @@ void PlusOuMoins()
 		}
 		else if (turn == 0)
 		{
-			std::cout << "Perdut " << std::endl;
+			std::cout << "Perdu " << std::endl;
 			break;
 		}
 		else if (number > mystery_Number)
@@ -214,6 +215,7 @@ void PrintMultiplication()
 
 void Morpion()
 {
+	int end = 0;
 	const int max_Table = 9;
 	char table[max_Table]{ ' ', ' ',' ',' ', ' ',' ', ' ', ' ',' ' };
 	int choice;
@@ -251,6 +253,7 @@ void Morpion()
 			if (table[i] == 'x' && table[i + 1] == 'x' && table[i + 2] == 'x')
 			{
 				std::cout << "Bien jouer Gagner !" << std::endl;
+				end = 1;
 				break;
 			}
 		}
@@ -259,15 +262,25 @@ void Morpion()
 			if (table[i] == 'x' && table[i + 3] == 'x' && table[i + 6] == 'x')
 			{
 				std::cout << "Bien jouer Gagner !" << std::endl;
+				end = 1;
 				break;
 			}
 		}
 		if ((table[0] == 'x' && table[4] == 'x' && table[8] == 'x') || (table[6] == 'x' && table[4] == 'x' && table[2] == 'x'))
 		{
 			std::cout << "Bien jouer Gagner !" << std::endl;
+			end = 1;
+		}
+		if (end != 0)
+		{
+			std::cout << "La parti et finis la relancer ? " << std::endl
+				<< "Oui = 0" << std::endl
+				<< "Non = 1" << std::endl;
+			end = Choice(0,1);
+			if (end == 1)
 			break;
 		}
-		while (true) // bot stupide (randome
+		while (true) // bot stupide (random)
 		{
 			choice = Generator(max_Table);
 			if (table[choice] == ' ')
@@ -282,31 +295,43 @@ void Morpion()
 			if (table[i] == ' ' && table[i + 1] == ' ' && table[i + 2] == ' ')
 			{
 				std::cout << " Egaliter " << std::endl;
+				end = 1;
 				break;
 			}
 		}
 
-		for (int i = 0; i == 6; i = i + 3)
+		for (int i = 0; i == 6; i = i + 3) // vertical
 		{
 			if (table[i] == 'o' && table[i + 1] == 'o' && table[i + 2] == 'o')
 			{
-				std::cout << "Bien jouer Gagner !" << std::endl;
+				std::cout << "Perdu !" << std::endl;
+				end = 1;
 				break;
 			}
 
 		}
-		for (int i = 0; i == 3; i++)
+		for (int i = 0; i == 3; i++) // horizontal
 		{
 			if (table[i] == 'o' && table[i + 3] == 'o' && table[i + 6] == 'o')
 			{
-				std::cout << "Bien jouer Gagner !" << std::endl;
+				std::cout << "Perdu !" << std::endl;
+				end = 1;
 				break;
 			}
 		}
 		if ((table[0] == 'o' && table[4] == 'o' && table[8] == 'o') || (table[6] == 'o' && table[4] == 'o' && table[2] == 'o'))
 		{
 			std::cout << "Perdu !" << std::endl;
-			break;
+			end = 1;
+		}
+		if (end != 0)
+		{
+			std::cout << "La parti et finis la relancer ? " << std::endl
+				<< "Oui = 0" << std::endl
+				<< "Non = 1" << std::endl;
+			end = Choice(0, 1);
+			if (end == 1)
+				break;
 		}
 	}
 }
