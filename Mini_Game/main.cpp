@@ -46,7 +46,7 @@ int main()
 
 		else
 			break;
-		system("cls");
+		//system("cls");
 	}
 
 	return 0;
@@ -104,7 +104,7 @@ void FirPlay()
 		int space = 8 * firSize; // de base 4 = 8
 
 
-		for (int i = 0; i == firSize; i++)
+		for (int i = 0; i <= firSize; i++)
 		{
 			for (int sp = 0; sp < space; sp++)
 			{
@@ -118,7 +118,7 @@ void FirPlay()
 			space = space - 1;
 		}
 		space = 8 * firSize;
-		for (int i = 0; i == logSize; i++)
+		for (int i = 0; i <= logSize; i++)
 		{
 			for (int sp = 0; sp < space; sp++)
 			{
