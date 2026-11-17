@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "Fire.h"
 // tous décaler dans des fichier .cpp et .h
 int Choice(int min, int max);
 int Generator(int max);
@@ -20,7 +20,7 @@ int main()
 {
 	srand(time(NULL));
 	int number_Game = 6; // nombre de jeux + 1 pour exit
-
+	Fire fire;
 	while (true)
 	{
 		std::cout << "Choisiser le jeux" << std::endl
@@ -34,7 +34,7 @@ int main()
 
 
 		if (choice == 1)
-			FirPlay();
+			fire.FirPlay();
 		else if (choice == 2)
 			PlusOuMoins();
 		else if (choice == 3)

@@ -1,9 +1,23 @@
 #include "Fire.h"
-/*
-int PrintFire(int fireSize)
+#include <iostream>
+
+void Fire::FirCustomization()
 {
-	std::cout << "     ";
-	for (int i = 0; i < fireSize; i++)
+	std::cout << "Please enter the fir size in range [" << firMinSize << "," << firMaxSize << "] : ";
+	firSize = input.Choice(firMinSize, firMaxSize);
+
+	std::cout << "Please enter the log size in range [" << logMinSize << "," << logMaxSize << "] : ";
+	logSize = input.Choice(logMinSize, logMaxSize);
+
+	std::cout << std::endl;
+}
+
+void Fire::PrintFire()
+{
+	int space = 8 * firSize; // de base 4 = 8
+	int quit;
+
+	for (int i = 1; i <= firSize; i++)
 	{
 		for (int sp = 0; sp < space; sp++)
 		{
@@ -16,4 +30,22 @@ int PrintFire(int fireSize)
 		std::cout << std::endl;
 		space = space - 1;
 	}
-}*/
+	space = 8 * firSize;
+	for (int i = 1; i <= logSize; i++)
+	{
+		for (int sp = 0; sp < space; sp++)
+		{
+			std::cout << " ";
+		}
+		std::cout << logCustomization << logCustomization;
+		std::cout << std::endl;
+	}
+
+	quit = input.Choice(0, 1);
+}
+
+void Fire::FirPlay()
+{
+	FirCustomization();
+	PrintFire();
+}
