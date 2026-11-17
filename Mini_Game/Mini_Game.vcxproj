@@ -22,10 +22,12 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Fire.cpp" />
+    <ClCompile Include="PlusOuMoins.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fire.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="PlusOuMoins.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

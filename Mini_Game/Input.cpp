@@ -15,3 +15,8 @@ int Input::Choice(int min, int max)
 
 	return choice;
 }
+
+int Input::Generator(int max)
+{
+	return rand() % (max + 1);
+}
