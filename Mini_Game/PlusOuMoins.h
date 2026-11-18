@@ -12,7 +12,7 @@ private:
 	Input input;
 public:
 
-	int StartPOM();
+	void StartPOM();
 	void GamePOM();
 	void PlayPOM();
 };

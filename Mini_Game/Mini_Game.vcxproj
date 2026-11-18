@@ -19,14 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Calculatrice.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Fire.cpp" />
+    <ClCompile Include="Morpion.cpp" />
+    <ClCompile Include="PFC.cpp" />
     <ClCompile Include="PlusOuMoins.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Calculatrice.h" />
     <ClInclude Include="Fire.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Morpion.h" />
+    <ClInclude Include="PFC.h" />
     <ClInclude Include="PlusOuMoins.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

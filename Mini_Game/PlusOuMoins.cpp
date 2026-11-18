@@ -30,28 +30,37 @@ void PlusOuMoins::GamePOM()
 {
 	while (true)
 	{
-		std::cout << "choisit un nombre entre 0 et" << max << std::endl;
-		number = input.Choice(0, max);
+		while (true)
+		{
+			std::cout << "choisit un nombre entre 0 et " << max << std::endl;
+			number = input.Choice(0, max);
 
-		if (number == mystery_Number)
-		{
-			std::cout << "Bien jouer tu a gagner" << std::endl;
+			if (number == mystery_Number)
+			{
+				std::cout << "Bien jouer tu a gagner" << std::endl;
+				break;
+			}
+			else if (turn == 0)
+			{
+				std::cout << "Perdu " << std::endl;
+				break;
+			}
+			else if (number > mystery_Number)
+			{
+				std::cout << "T'est trop haut" << std::endl;
+			}
+			else if (number < mystery_Number)
+			{
+				std::cout << "Trop bas" << std::endl;
+			}
+			turn--;
+		}
+		std::cout << "Vous voulez rejouer ? " << std::endl
+			<< "Rejouet -> 0" << std::endl
+			<< "Quitter -> 1" << std::endl;
+		int quit = input.Choice(0, 1);
+		if (quit == 1)
 			break;
-		}
-		else if (turn == 0)
-		{
-			std::cout << "Perdu " << std::endl;
-			break;
-		}
-		else if (number > mystery_Number)
-		{
-			std::cout << "T'est trop haut" << std::endl;
-		}
-		else if (number < mystery_Number)
-		{
-			std::cout << "Trop bas" << std::endl;
-		}
-		turn--;
 	}
 }
 

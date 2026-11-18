@@ -7,13 +7,21 @@ int Input::Choice(int min, int max)
 	while (true)
 	{
 		std::cin >> choice;
-		if (choice >= min && choice <= max)
-			break;
-		std::cout << "Vous avez mal saisie recomancer et cette fois si correctement !!!" << std::endl;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(1000, '\n');
+			std::cout << "Entrez un nombre valide : \n";
+		}
+		else if (choice < min || choice > max)
+		{
+			std::cout << "Recommencer Joueur ! " << std::endl;
+		}
+		else
+		{
+			return choice;
+		}
 	}
-
-
-	return choice;
 }
 
 int Input::Generator(int max)

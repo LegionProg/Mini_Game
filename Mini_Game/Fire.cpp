@@ -23,7 +23,7 @@ void Fire::PrintFire()
 		{
 			std::cout << " ";
 		}
-		for (int a = 0; a < i + 1; a++)
+		for (int a = 0; a < i; a++)
 		{
 			std::cout << firCustomization << firCustomization;
 		}
@@ -40,7 +40,9 @@ void Fire::PrintFire()
 		std::cout << logCustomization << logCustomization;
 		std::cout << std::endl;
 	}
-
+	std::cout << "Vous voulez rejouer ? " << std::endl 
+		<< "Rejouet -> 1" << std::endl 
+		<< "Quitter -> 1" << std::endl;
 	quit = input.Choice(0, 1);
 }
 
